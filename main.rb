@@ -4,7 +4,7 @@ require_relative 'actions.rb'
 require_relative 'view.rb'
 
 stat = Stats.new
-yml = stat.load("stat.yml")
+yml = stat.load("stats.yml")
 valera = Valera.new({:health => yml['health'], :mana => yml['mana'], :money => yml['money'], :happiness => yml['happiness'], :fatigue => yml['fatigue'], :dead => 0})
 
 view = View.new
