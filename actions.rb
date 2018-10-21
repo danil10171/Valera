@@ -54,4 +54,44 @@ class Actions #класс управления действиями Валеры
     end
     valera.money += @yml['go_to_bar']['money']
   end
+
+  def drink_with_marginals(valera) #выпить с маргинальными личностями
+    valera.mana += @yml['drink_with_marginals']['mana']
+    valera.mana = 100 if valera.mana > 100  
+    valera.happiness += @yml['drink_with_marginals']['happiness']
+    valera.happiness = 10 if valera.happiness > 10
+    valera.fatigue += @yml['drink_with_marginals']['fatigue']
+    valera.fatigue = 100 if valera.fatigue > 100
+    valera.health += @yml['drink_with_marginals']['health']
+    if valera.health <= 0
+      valera.health = 0 
+      valera.dead = 1
+    end
+    valera.money += @yml['drink_with_marginals']['money']
+  end
+  
+  def sing_in_metro(valera) #петь в метро
+    if (valera.mana > 40 && valera.mana < 70)
+      valera.money += @yml['sing_in_metro']['money1']
+    else
+      valera.money += @yml['sing_in_metro']['money2']
+    end
+    valera.mana += @yml['sing_in_metro']['mana']
+    valera.mana = 100 if valera.mana > 100  
+    valera.happiness += @yml['sing_in_metro']['happiness']
+    valera.happiness = 10 if valera.happiness > 10
+    valera.fatigue += @yml['sing_in_metro']['fatigue']
+    valera.fatigue = 100 if valera.fatigue > 100
+  end
+  
+  def sleep(valera) #спать
+    valera.health += @yml['sleep']['health'] if valera.mana < 30
+    valera.health = 100 if valera.health > 100
+    valera.mana += @yml['sleep']['mana']
+    valera.mana = 0 if valera.mana < 0  
+    valera.happiness += @yml['sleep']['happiness'] if valera.mana > 70
+    valera.happiness = -10 if valera.happiness < -10
+    valera.fatigue += @yml['sleep']['fatigue']
+    valera.fatigue = 0 if valera.fatigue < 0
+  end  
 end
