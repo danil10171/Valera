@@ -11,7 +11,6 @@ view = View.new
 view.welcome
 
 while valera.dead? != 1
-  view.stat(valera)
   view.actions
   print "> "
   action_choise = gets.chomp
@@ -70,10 +69,12 @@ while valera.dead? != 1
       stat = Stats.new
       yml = stat.load("save.yml")
       valera = Valera.new({:health => yml['health'], :mana => yml['mana'], :money => yml['money'], :happiness => yml['happiness'], :fatigue => yml['fatigue'], :dead => 0})
+    when "10"
+        view.stat(valera)
     else
       puts "Действия на данную кнопку нет.\n"
   end
 end
 
-view.dead
 view.stat(valera)
+view.dead
